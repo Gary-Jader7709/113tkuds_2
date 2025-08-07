@@ -1,0 +1,83 @@
+public class MatrixCalculator {
+    public static void main(String[] args) {
+        int[][] A = {
+            {1, 2, 3},
+            {4, 5, 6}
+        };
+        int[][] B = {
+            {7, 8, 9},
+            {10, 11, 12}
+        };
+
+        int[][] sum = add(A, B);
+        System.out.println("矩陣加法結果：");
+        printMatrix(sum);
+
+        int[][] C = {
+            {1, 2},
+            {3, 4},
+            {5, 6}
+        };
+        int[][] product = multiply(A, C);
+        System.out.println("矩陣乘法結果：");
+        printMatrix(product);
+
+        int[][] transposed = transpose(A);
+        System.out.println("矩陣轉置結果：");
+        printMatrix(transposed);
+
+        int max = findMax(A);
+        int min = findMin(A);
+        System.out.printf("最大值: %d, 最小值: %d\n", max, min);
+    }
+
+    public static int[][] add(int[][] a, int[][] b) {
+        int[][] result = new int[a.length][a[0].length];
+        for (int i = 0; i < a.length; i++)
+            for (int j = 0; j < a[0].length; j++)
+                result[i][j] = a[i][j] + b[i][j];
+        return result;
+    }
+
+    public static int[][] multiply(int[][] a, int[][] b) {
+        int[][] result = new int[a.length][b[0].length];
+        for (int i = 0; i < a.length; i++)
+            for (int j = 0; j < b[0].length; j++)
+                for (int k = 0; k < a[0].length; k++)
+                    result[i][j] += a[i][k] * b[k][j];
+        return result;
+    }
+
+    public static int[][] transpose(int[][] a) {
+        int[][] result = new int[a[0].length][a.length];
+        for (int i = 0; i < a.length; i++)
+            for (int j = 0; j < a[0].length; j++)
+                result[j][i] = a[i][j];
+        return result;
+    }
+
+    public static int findMax(int[][] a) {
+        int max = a[0][0];
+        for (int[] row : a)
+            for (int val : row)
+                if (val > max) max = val;
+        return max;
+    }
+
+    public static int findMin(int[][] a) {
+        int min = a[0][0];
+        for (int[] row : a)
+            for (int val : row)
+                if (val < min) min = val;
+        return min;
+    }
+
+    public static void printMatrix(int[][] m) {
+        for (int[] row : m) {
+            for (int val : row) {
+                System.out.printf("%4d", val);
+            }
+            System.out.println();
+        }
+    }
+}

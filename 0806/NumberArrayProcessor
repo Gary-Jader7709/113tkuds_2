@@ -1,0 +1,16 @@
+public class NumberArrayProcessor {
+    public static void main(String[] args) {
+        int[] data = {5, 8, 12, 20, 25, 33, 47, 52, 59, 63};
+
+        int evenSum = 0, oddSum = 0, multipleOf5 = 0;
+        for (int num : data) {
+            if (num % 2 == 0) evenSum += num;
+            else oddSum += num;
+            if (num % 5 == 0) multipleOf5++;
+        }
+
+        System.out.println("偶數總和: " + evenSum);
+        System.out.println("奇數總和: " + oddSum);
+        System.out.println("可被5整除的個數: " + multipleOf5);
+    }
+}
